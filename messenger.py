@@ -9,6 +9,28 @@ max_msg_per_hour = 50
 second_level_counter = 0
 reply_counter = 0
 
+def output(self, message_text, max_msg_per_min, reply_counter, thread_id, thread_type): 
+    bot_message = get_message(message_text)
+    bot_message = add_a_counter(bot_message, max_msg_per_min, reply_counter)
+    send_message(self, bot_message, thread_id, thread_type)
+
+def add_a_counter(bot_message, max_msg_per_min, reply_counter):
+    #adds a counter for remaining messages left in the minute
+    msgs_left = max_msg_per_min - reply_counter - 1
+    remaining_message = '[Msgs Left: {}]'.format(msgs_left)
+    bot_message = ' '.join([bot_message,remaining_message])
+    return bot_message
+
+def send_message(self, bot_message, thread_id, thread_type):
+    global second_level_counter
+    global reply_counter
+    #sends the message and prints output
+    self.send(Message(bot_message), thread_id=thread_id, thread_type=thread_type)
+    print('Output: {}'.format(bot_message))
+    reply_counter += 1
+    second_level_counter += 1
+    print('Counter: {}'.format(second_level_counter))
+
 def get_message(message_text):
     #gets the neural net output and extracts only the text
     bot_output = inference(message_text)
@@ -48,35 +70,14 @@ class CarlosBot(Client):
                     message_text = message_text.replace('@Carlosbot Bob', '')
                     message_text = message_text.replace('@Carlosbot', '')
                     print(message_text)
-                    #get_and_send_message(message_text, thread_id, thread_type)
-                    bot_message = get_message(message_text)
 
-                    #adds a counter for remaining messages left in the minute
-                    bot_message = ' '.join([bot_message,remaining_message])
-
-                    #sends the message and prints output
-                    self.send(Message(bot_message), thread_id=thread_id, thread_type=thread_type)
-                    print('Output: {}'.format(bot_message))
-                    reply_counter += 1
-                    second_level_counter += 1
-                    print('Counter: {}'.format(second_level_counter))
+                    #gets bot_message, adds a counter, sends the message
+                    output(self, message_text, max_msg_per_min, reply_counter, thread_id, thread_type)
 
             #If it's a user, reply immediately
             elif thread_type == ThreadType.USER:
-                #get_and_send_message(message_text, thread_id, thread_type)
-                bot_message = get_message(message_text)
-
-                #adds a counter for remaining messages left in the minute
-                msgs_left = max_msg_per_min - reply_counter
-                remaining_message = '[Msgs Left: {}]'.format(msgs_left)
-                bot_message = ' '.join([bot_message,remaining_message])
-
-                #sends the message and prints output
-                self.send(Message(bot_message), thread_id=thread_id, thread_type=thread_type)
-                print('Output: {}'.format(bot_message))
-                reply_counter += 1
-                second_level_counter += 1
-                print('Counter: {}'.format(second_level_counter))
+                #gets bot_message, adds a counter, sends the message
+                output(self, message_text, max_msg_per_min, reply_counter, thread_id, thread_type)
 
 while True:
     try:
