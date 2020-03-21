@@ -19,16 +19,20 @@ class CarlosBot(Client):
         #self.markAsDelivered(thread_id, message_object.uid)
         #self.markAsRead(thread_id)
 
+        #Limits to 3 messages per minute with a max of 60 messages per hour
+        if second_level_counter > 59:
+            time.sleep(60*60)
+            second_level_counter = 0
+
+        if reply_counter > 2: 
+            time.sleep(60)
+            reply_counter = 0
+            
         # If you're not the author, use the chatbot
         if author_id != self.uid:
             message_text = message_object.text
             print('Input: {}'.format(message_text))
 
-            #Limits to 2 messages per minute
-            if reply_counter > 2: 
-                time.sleep(60)
-                reply_counter = 0
-                pass
             else
                 # If it's a group, find '@CarlosBot'
                 if thread_type == ThreadType.GROUP:
@@ -38,12 +42,15 @@ class CarlosBot(Client):
                         print(message_text)
                         get_and_send_message(message_text, thread_id, thread_type)
                         reply_counter += 1
+                        second_level_counter += 1
 
                 #If it's a user, reply immediately
                 elif thread_type == ThreadType.USER:
                     get_and_send_message(message_text, thread_id, thread_type)
                     reply_counter += 1
+                    second_level_counter += 1
 
+second_level_counter = 0
 reply_counter = 0
 client = CarlosBot('fakecma00@gmail.com', '4akecmaisgreat')
 client.listen()
