@@ -17,7 +17,7 @@ def output(self, message_text, max_msg_per_min, reply_counter, thread_id, thread
 def add_a_counter(bot_message, max_msg_per_min, reply_counter):
     #adds a counter for remaining messages left in the minute
     msgs_left = max_msg_per_min - reply_counter - 1
-    remaining_message = '[Msgs Left: {}]'.format(msgs_left)
+    remaining_message = '[Msgs left this min: {}]'.format(msgs_left)
     bot_message = ' '.join([bot_message,remaining_message])
     return bot_message
 
