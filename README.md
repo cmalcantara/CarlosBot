@@ -1,4 +1,4 @@
-CarlosBot
+[CarlosBot](https://m.me/carlosbot.bob.3)
 =======================
 
 Table of Contents
@@ -15,6 +15,5 @@ nmt-chatbot and utilizes the fbchat python messenger api
 
 Links
 ---------------------
-[chatbot](m.me/carlos.bot.1044)  
 [fbchat](https://github.com/daniel-kukiela/nmt-chatbot)  
 [nmt-chatbot](https://github.com/carpedm20/fbchat)  

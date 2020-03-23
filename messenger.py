@@ -4,7 +4,7 @@ from _deploymentv2.inference import inference
 import os
 import time
 
-group_introduction = 'Hi, I\'m Carlosbot, a neural network chatbot by Carlos A. if you want to chat, just @ me or pm directly. Though, I am still quite du b and will be improved later on.'
+group_introduction = 'Hi, I\'m Carlosbot, a neural network chatbot by Carlos A. if you want to chat, just @ me or pm directly. Though, I am still quite dumb and will be improved later on.'
 user_introduction = 'Hi, I\'m Carlosbot, a neural network chatbot by Carlos A. I\'m here if you want to chat. Though, I am still quite dumb and will be improved later on.'
 
 sleep_period = 20
@@ -61,7 +61,7 @@ class CarlosBot(Client):
         #log.info("New pending message from {}".format(thread_id))
         #threads = self.fetchThreadList(thread_location=ThreadLocation.PENDING)
         #for thread in threads:
-        self.send(Message(user_introduction), thread_id=thread_id, thread_type=thread_type)
+        self.send(Message(group_introduction), thread_id=thread_id, thread_type=thread_type)
 
 
     def onMessage(self, author_id, message_object, thread_id, thread_type, **kwargs):
