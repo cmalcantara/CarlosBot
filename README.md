@@ -1,14 +1,8 @@
 [CarlosBot](https://m.me/carlosbot.bob.3)
 =======================
 
-Introduction
----------------------
-A Facebook Messenger neural network chatbot trained based on my messenger
-history, favorite subreddits and hackernews comments. This is based on
-nmt-chatbot and utilizes the fbchat python messenger api
+A Facebook Messenger neural network chatbot trained on a month of reddit history but will be improved using messenger chat history, favorite subreddits and hackernews comments. This is based on [nmt-chatbot](https://github.com/daniel-kukiela/nmt-chatbot) and utilizes the [fbchat](https://github.com/carpedm20/fbchat) python messenger api.
 
-
-Links
+Maintainer
 ---------------------
-[nmt-chatbot](https://github.com/daniel-kukiela/nmt-chatbot)  
-[fbchat](https://github.com/carpedm20/fbchat)  
+* Carlos Alcantara / [Github](https://github.com/cmalcantara) [Twitter](https://twitter.com/cmaxyz)
