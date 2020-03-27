@@ -7,9 +7,10 @@ import time
 group_introduction = 'Hi, I\'m Carlosbot, a neural network chatbot by Carlos A. if you want to chat, just @ me or pm directly. Though, I am still quite dumb and will be improved later on.'
 user_introduction = 'Hi, I\'m Carlosbot, a neural network chatbot by Carlos A. I\'m here if you want to chat. Though, I am still quite dumb and will be improved later on.'
 
+stop_time = time.time() + 86390
 sleep_period = 20
-per_msg_delay = 1.5
-max_msg_per_30s = 15
+per_msg_delay = 2.5
+max_msg_per_30s = 10
 reply_counter = 0
 
 def output(self, message_text, max_msg_per_30s, reply_counter, thread_id, thread_type): 
@@ -102,6 +103,6 @@ class CarlosBot(Client):
                 #gets bot_message, adds a counter, sends the message
                 output(self, message_text, max_msg_per_30s, reply_counter, thread_id, thread_type)
 
-while True:
+while time.time() < stop_time: 
     client = CarlosBot("bobcarlos545@gmail.com", "bobocarlos505")
     client.listen()
